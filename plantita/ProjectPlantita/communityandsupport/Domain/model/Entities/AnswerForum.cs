@@ -1,4 +1,4 @@
-﻿namespace plantita.ProjectPlantita.communityandsupport.Domain.Entities;
+﻿namespace plantita.ProjectPlantita.communityandsupport.Domain.model.Entities;
 
 public class AnswerForum
 {
