@@ -1,6 +1,6 @@
 ﻿using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
-using plantita.ProjectPlantita.communityandsupport.Domain.Entities;
+using plantita.ProjectPlantita.communityandsupport.Domain.model.Entities;
 using plantita.ProjectPlantita.communityandsupport.Domain.model.aggregates;
 using plantita.ProjectPlantita.diagnosisandproblems.domain.model.aggregates;
 using plantita.ProjectPlantita.diagnosisandproblems.domain.model.Entities;

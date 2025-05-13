@@ -1,4 +1,4 @@
-﻿using plantita.ProjectPlantita.communityandsupport.Domain.Entities;
+﻿using plantita.ProjectPlantita.communityandsupport.Domain.model.Entities;
 
 namespace plantita.ProjectPlantita.communityandsupport.Domain.model.aggregates;
 

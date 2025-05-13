@@ -11182,20 +11182,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\erick\\.nuget\\packages\\": {}
+    "C:\\Users\\USUARIO\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\plantita\\plantita\\plantita.csproj",
+      "projectUniqueName": "E:\\CICLO 7\\EXPERIMENTOS\\Backend\\BackendC-\\plantita\\plantita.csproj",
       "projectName": "plantita",
-      "projectPath": "E:\\plantita\\plantita\\plantita.csproj",
-      "packagesPath": "C:\\Users\\erick\\.nuget\\packages\\",
-      "outputPath": "E:\\plantita\\plantita\\obj\\",
+      "projectPath": "E:\\CICLO 7\\EXPERIMENTOS\\Backend\\BackendC-\\plantita\\plantita.csproj",
+      "packagesPath": "C:\\Users\\USUARIO\\.nuget\\packages\\",
+      "outputPath": "E:\\CICLO 7\\EXPERIMENTOS\\Backend\\BackendC-\\plantita\\obj\\",
       "projectStyle": "PackageReference",
-      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
-        "C:\\Users\\erick\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\USUARIO\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -11316,7 +11315,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.406/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\USUARIO\\.dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
