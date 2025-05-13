@@ -5,6 +5,11 @@ using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using plantita.ProjectPlantita.plantmanagment.Application.Internal.CommandServices;
+using plantita.ProjectPlantita.plantmanagment.Application.Internal.QueryServices;
+using plantita.ProjectPlantita.plantmanagment.domain.Repositories;
+using plantita.ProjectPlantita.plantmanagment.domain.Services;
+using plantita.ProjectPlantita.plantmanagment.Infraestructure.EFC.Repositories;
 using plantita.Shared.Domain.Repositories;
 using plantita.Shared.Infraestructure.Interfaces.ASP.Configuration;
 using plantita.Shared.Infraestructure.Persistences.EFC.Configuration;
@@ -159,6 +164,18 @@ builder.Services.AddScoped<IAuthUserQueryService, AuthUserQueryService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
 builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
+
+builder.Services.AddScoped<IPlantRepository, PlantRepository>();
+builder.Services.AddScoped<IMyPlantRepository, MyPlantRepository>();
+builder.Services.AddScoped<ICareTaskRepository, CareTaskRepository>();
+builder.Services.AddScoped<IPlantHealthLogRepository, PlantHealthLogRepository>();
+builder.Services.AddScoped<IPlantCommandService, PlantCommandService>();
+builder.Services.AddScoped<IPlantQueryService, PlantQueryService>();
+builder.Services.AddScoped<IMyPlantCommandService, MyPlantCommandService>();
+builder.Services.AddScoped<IMyPlantQueryService, MyPlantQueryService>();
+
+builder.Services.AddHttpClient<IPlantIdentificationService, PlantIdentificationService>();
+
 
 var app = builder.Build();
 

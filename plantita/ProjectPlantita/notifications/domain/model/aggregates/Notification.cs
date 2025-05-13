@@ -1,4 +1,4 @@
-﻿namespace DefaultNamespace;
+﻿namespace plantita.ProjectPlantita.notifications.domain.model.aggregates;
 
 public class Notification
 {

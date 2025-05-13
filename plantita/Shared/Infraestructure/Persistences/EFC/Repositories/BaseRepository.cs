@@ -25,6 +25,10 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
     {
         return await Context.Set<TEntity>().FindAsync(id);
     }
+    public async Task<TEntity?> FindByIdGuidAsync(Guid id)
+    {
+        return await Context.Set<TEntity>().FindAsync(id);
+    }
 
     public async Task UpdateAsync(TEntity entity)
     {

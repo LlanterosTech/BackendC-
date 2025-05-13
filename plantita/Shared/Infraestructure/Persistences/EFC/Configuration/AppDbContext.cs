@@ -1,13 +1,15 @@
-﻿using DefaultNamespace;
-using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
+﻿using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
 using plantita.ProjectPlantita.communityandsupport.Domain.Entities;
 using plantita.ProjectPlantita.communityandsupport.Domain.model.aggregates;
+using plantita.ProjectPlantita.diagnosisandproblems.domain.model.aggregates;
 using plantita.ProjectPlantita.diagnosisandproblems.domain.model.Entities;
 using plantita.ProjectPlantita.iotmonitoring.domain.model.aggregates;
 using plantita.ProjectPlantita.iotmonitoring.domain.model.Entities;
 using plantita.ProjectPlantita.learningandeducation.domain.model.Entities;
+using plantita.ProjectPlantita.notifications.domain.model.aggregates;
 using plantita.ProjectPlantita.plantmanagment.domain.model.aggregates;
+using plantita.ProjectPlantita.plantmanagment.domain.model.aggregates.PlantID;
 using plantita.ProjectPlantita.plantmanagment.domain.model.Entities;
 using plantita.User.Domain.Model.Aggregates;
 
@@ -38,6 +40,7 @@ namespace plantita.Shared.Infraestructure.Persistences.EFC.Configuration
     public DbSet<MyPlant> MyPlants { get; set; }
     public DbSet<PlantHealthLog> PlantHealthLogs { get; set; }
     public DbSet<CareTask> CareTasks { get; set; }
+    public DbSet<Plant> Plants { get; set; }
 
     // IoT
     public DbSet<IoTDevice> IoTDevices { get; set; }
@@ -108,6 +111,18 @@ namespace plantita.Shared.Infraestructure.Persistences.EFC.Configuration
                 entity.HasMany(p => p.Alerts)
                       .WithOne(a => a.PlantInstance)
                       .HasForeignKey(a => a.PlantInstanceId);
+            });
+            
+            modelBuilder.Entity<Plant>(entity =>
+            {
+                entity.HasKey(p => p.PlantId);
+                entity.Property(p => p.ScientificName).IsRequired().HasMaxLength(255);
+                entity.Property(p => p.CommonName).HasMaxLength(255);
+                entity.Property(p => p.Description).HasMaxLength(2000);
+                entity.Property(p => p.Watering).HasMaxLength(100);
+                entity.Property(p => p.Sunlight).HasMaxLength(200);
+                entity.Property(p => p.WikiUrl).HasMaxLength(500);
+                entity.Property(p => p.ImageUrl).HasMaxLength(500);
             });
 
             modelBuilder.Entity<CareTask>(entity =>

@@ -1,6 +1,6 @@
 ﻿using plantita.ProjectPlantita.diagnosisandproblems.domain.model.Entities;
 
-namespace DefaultNamespace;
+namespace plantita.ProjectPlantita.diagnosisandproblems.domain.model.aggregates;
 
 public class ProblemPlants
 {
