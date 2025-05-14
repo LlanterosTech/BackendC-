@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
     [Authorize]
     [ApiController]
-    [Route("amsac/v1/authentication")]
+    [Route("plantita/v1/authentication")]
     [Produces(MediaTypeNames.Application.Json)]
     public class AuthenticationController(
         IAuthUserCommandService userCommandService,

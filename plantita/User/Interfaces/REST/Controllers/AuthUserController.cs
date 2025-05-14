@@ -11,7 +11,7 @@ using plantita.User.Interfaces.REST.Transform;
 namespace plantita.User.Interfaces.REST.Controllers;
 
 [ApiController]
-[Route("amsac/v1/[controller]")]
+[Route("plantita/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
 public class AuthUserController(IAuthUserQueryService authUserQueryService, IAuthUserCommandService userCommandService) : ControllerBase
 {
