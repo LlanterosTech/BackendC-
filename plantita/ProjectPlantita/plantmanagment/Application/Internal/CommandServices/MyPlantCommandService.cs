@@ -2,6 +2,7 @@
 using plantita.ProjectPlantita.plantmanagment.domain.model.Entities;
 using plantita.ProjectPlantita.plantmanagment.domain.Repositories;
 using plantita.ProjectPlantita.plantmanagment.domain.Services;
+using plantita.ProjectPlantita.plantmanagment.Interfaces.Resources;
 using plantita.Shared.Domain.Repositories;
 
 namespace plantita.ProjectPlantita.plantmanagment.Application.Internal.CommandServices;
@@ -12,17 +13,23 @@ public class MyPlantCommandService : IMyPlantCommandService
     private readonly ICareTaskRepository _careTaskRepository;
     private readonly IPlantHealthLogRepository _healthLogRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IPlantRepository _plantRepository;
+    private readonly IPlantQueryService _plantQueryService;
 
     public MyPlantCommandService(
         IMyPlantRepository myPlantRepository,
         ICareTaskRepository careTaskRepository,
         IPlantHealthLogRepository healthLogRepository,
+        IPlantRepository plantRepository,
+        IPlantQueryService plantQueryService,
         IUnitOfWork unitOfWork)
     {
         _myPlantRepository = myPlantRepository;
         _careTaskRepository = careTaskRepository;
         _healthLogRepository = healthLogRepository;
         _unitOfWork = unitOfWork;
+        _plantRepository = plantRepository;
+        _plantQueryService = plantQueryService;
     }
 
     public async Task<MyPlant> CreateMyPlantAsync(MyPlant myPlant)
@@ -46,7 +53,41 @@ public class MyPlantCommandService : IMyPlantCommandService
         await _unitOfWork.CompleteAsync();
         return existing;
     }
+    public async Task<MyPlant> RegisterMyPlantAsync(Guid userId, SaveMyPlantResource resource)
+    {
+        var plant = await _plantQueryService.GetByIdAsync(resource.PlantId);
+        if (plant == null) throw new Exception("Planta no encontrada.");
 
+        // 🖼 Guardar imagen en disco local o cloud, aquí simulamos
+        var photoName = $"{Guid.NewGuid()}_{resource.Photo.FileName}";
+        var path = Path.Combine("wwwroot/uploads", photoName);
+        Directory.CreateDirectory("wwwroot/uploads");
+
+        await using (var stream = new FileStream(path, FileMode.Create))
+        {
+            await resource.Photo.CopyToAsync(stream);
+        }
+
+        var photoUrl = $"/uploads/{photoName}"; // accesible vía frontend
+
+        var myPlant = new MyPlant
+        {
+            MyPlantId = Guid.NewGuid(),
+            UserId = userId,
+            PlantId = plant.PlantId,
+            CustomName = resource.CustomName,
+            Location = resource.Location,
+            Note = resource.Note,
+            AcquiredAt = resource.AcquiredAt,
+            CurrentStatus = resource.CurrentStatus,
+            PhotoUrl = photoUrl
+        };
+
+        await _myPlantRepository.AddAsync(myPlant);
+        await _unitOfWork.CompleteAsync();
+
+        return myPlant;
+    }
     public async Task<bool> DeleteMyPlantAsync(Guid myPlantId)
     {
         var existing = await _myPlantRepository.FindByIdGuidAsync(myPlantId);
@@ -110,4 +151,6 @@ public class MyPlantCommandService : IMyPlantCommandService
         await _unitOfWork.CompleteAsync();
         return tasks;
     }
+
+   
 }

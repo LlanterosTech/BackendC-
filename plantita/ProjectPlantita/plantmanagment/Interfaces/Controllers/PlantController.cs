@@ -7,7 +7,7 @@
     namespace plantita.ProjectPlantita.plantmanagment.Interfaces.Controllers;
 
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("plantita/v1/[controller]")]
     [Produces(MediaTypeNames.Application.Json)]
     public class PlantController(
         IPlantCommandService plantCommandService,

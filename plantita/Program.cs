@@ -213,3 +213,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+app.UseStaticFiles(); // Asegúrate de tener esto configurado

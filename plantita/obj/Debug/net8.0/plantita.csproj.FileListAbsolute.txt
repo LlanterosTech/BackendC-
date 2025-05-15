@@ -356,3 +356,4 @@ E:\CICLO 7\EXPERIMENTOS\Backend\BackendC-\plantita\obj\Debug\net8.0\refint\plant
 E:\CICLO 7\EXPERIMENTOS\Backend\BackendC-\plantita\obj\Debug\net8.0\plantita.pdb
 E:\CICLO 7\EXPERIMENTOS\Backend\BackendC-\plantita\obj\Debug\net8.0\plantita.genruntimeconfig.cache
 E:\CICLO 7\EXPERIMENTOS\Backend\BackendC-\plantita\obj\Debug\net8.0\ref\plantita.dll
+E:\plantita\plantita\bin\Debug\net8.0\plantita.staticwebassets.runtime.json

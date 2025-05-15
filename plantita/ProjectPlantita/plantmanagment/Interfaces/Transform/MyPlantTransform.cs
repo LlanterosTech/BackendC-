@@ -21,7 +21,7 @@ public static class MyPlantMapper
         };
     }
 
-    public static MyPlant ToModel(SaveMyPlantResource resource, Guid userId)
+    public static MyPlant ToModel(SaveMyPlantResource resource, Guid userId,string photoUrl)
     {
         return new MyPlant
         {
@@ -31,7 +31,7 @@ public static class MyPlantMapper
             AcquiredAt = resource.AcquiredAt,
             Location = resource.Location,
             Note = resource.Note,
-            PhotoUrl = resource.PhotoUrl,
+            PhotoUrl = photoUrl,
             CurrentStatus = resource.CurrentStatus
         };
     }

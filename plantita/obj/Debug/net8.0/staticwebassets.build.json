@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "1UmquxiEkXF9PLAZMvrPS+cvrjEiREzcHHLwV+RFTBQ=",
+  "Hash": "FOCUsY9So1PxTwDdX/leR54WgoBcOza88WwAKPhF+vk=",
   "Source": "plantita",
   "BasePath": "_content/plantita",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "plantita\\wwwroot",
+      "Source": "plantita",
+      "ContentRoot": "E:\\plantita\\plantita\\wwwroot\\",
+      "BasePath": "_content/plantita",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }
