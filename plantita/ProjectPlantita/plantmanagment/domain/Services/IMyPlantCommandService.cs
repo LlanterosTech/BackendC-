@@ -13,6 +13,6 @@ public interface IMyPlantCommandService
     Task<CareTask> MarkCareTaskCompletedAsync(Guid taskId);
     Task<PlantHealthLog> LogPlantHealthAsync(Guid myPlantId, PlantHealthLog log);
     Task<List<CareTask>> GenerateCareTasksAsync(Guid myPlantId); // cronograma
-    Task<MyPlant> RegisterMyPlantAsync( Guid userId,SaveMyPlantResource resource);
+    Task<MyPlant> RegisterMyPlantAsync(Guid userId,Guid planId,SaveMyPlantResource resource);
 
 }

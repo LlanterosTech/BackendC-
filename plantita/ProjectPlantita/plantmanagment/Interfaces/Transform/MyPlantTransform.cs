@@ -3,7 +3,7 @@ using plantita.ProjectPlantita.plantmanagment.Interfaces.Resources;
 
 namespace plantita.ProjectPlantita.plantmanagment.Interfaces.Transform;
 
-public static class MyPlantMapper
+public static class MyPlantTransform
 {
     public static MyPlantResource ToResource(MyPlant model)
     {
@@ -21,18 +21,17 @@ public static class MyPlantMapper
         };
     }
 
-    public static MyPlant ToModel(SaveMyPlantResource resource, Guid userId,string photoUrl)
+    public static MyPlant ToModel(SaveMyPlantResource resource, Guid plantId,string photoUrl)
     {
         return new MyPlant
         {
-            UserId = userId,
-            PlantId = resource.PlantId,
+            PlantId = plantId,
             CustomName = resource.CustomName,
-            AcquiredAt = resource.AcquiredAt,
+            AcquiredAt = DateTime.UtcNow,
             Location = resource.Location,
             Note = resource.Note,
             PhotoUrl = photoUrl,
-            CurrentStatus = resource.CurrentStatus
+            CurrentStatus = "Healthy"
         };
     }
 }

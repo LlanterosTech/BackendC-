@@ -53,33 +53,55 @@ public class MyPlantCommandService : IMyPlantCommandService
         await _unitOfWork.CompleteAsync();
         return existing;
     }
-    public async Task<MyPlant> RegisterMyPlantAsync(Guid userId, SaveMyPlantResource resource)
+    public async Task<MyPlant> RegisterMyPlantAsync(Guid userId,Guid plantId,SaveMyPlantResource resource)
     {
-        var plant = await _plantQueryService.GetByIdAsync(resource.PlantId);
+        //var plant = await _plantQueryService.GetByIdAsync(resource.PlantId);
+        //if (plant == null) throw new Exception("Planta no encontrada.");
+//
+        //// 🖼 Guardar imagen en disco local o cloud, aquí simulamos
+        //var photoName = $"{Guid.NewGuid()}_{resource.Photo.FileName}";
+        //var path = Path.Combine("wwwroot/uploads", photoName);
+        //Directory.CreateDirectory("wwwroot/uploads");
+//
+        //await using (var stream = new FileStream(path, FileMode.Create))
+        //{
+        //    await resource.Photo.CopyToAsync(stream);
+        //}
+//
+        //var photoUrl = $"/uploads/{photoName}"; // accesible vía frontend
+//
+        //var myPlant = new MyPlant
+        //{
+        //    MyPlantId = Guid.NewGuid(),
+        //    UserId = userId,
+        //    PlantId = plant.PlantId,
+        //    CustomName = resource.CustomName,
+        //    Location = resource.Location,
+        //    Note = resource.Note,
+        //    AcquiredAt = resource.AcquiredAt,
+        //    CurrentStatus = resource.CurrentStatus,
+        //    PhotoUrl = photoUrl
+        //};
+//
+        //await _myPlantRepository.AddAsync(myPlant);
+        //await _unitOfWork.CompleteAsync();
+//
+        //return myPlant;
+        var plant = await _plantQueryService.GetByIdAsync(plantId);
         if (plant == null) throw new Exception("Planta no encontrada.");
 
-        // 🖼 Guardar imagen en disco local o cloud, aquí simulamos
-        var photoName = $"{Guid.NewGuid()}_{resource.Photo.FileName}";
-        var path = Path.Combine("wwwroot/uploads", photoName);
-        Directory.CreateDirectory("wwwroot/uploads");
-
-        await using (var stream = new FileStream(path, FileMode.Create))
-        {
-            await resource.Photo.CopyToAsync(stream);
-        }
-
-        var photoUrl = $"/uploads/{photoName}"; // accesible vía frontend
+        var photoUrl = plant.ImageUrl; // Usa la imagen de la planta base
 
         var myPlant = new MyPlant
         {
             MyPlantId = Guid.NewGuid(),
             UserId = userId,
-            PlantId = plant.PlantId,
+            PlantId = plantId,
             CustomName = resource.CustomName,
             Location = resource.Location,
             Note = resource.Note,
-            AcquiredAt = resource.AcquiredAt,
-            CurrentStatus = resource.CurrentStatus,
+            AcquiredAt = DateTime.UtcNow,
+            CurrentStatus = "Healthy",
             PhotoUrl = photoUrl
         };
 
