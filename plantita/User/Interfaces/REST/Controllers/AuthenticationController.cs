@@ -65,7 +65,7 @@ using Microsoft.AspNetCore.Authorization;
 
             });
 
-            return Ok(new { message = "Inicio de sesión exitoso" });
+            return Ok(new { message = "Inicio de sesión exitoso",jwtToken = jwtToken,userId = user.Id });
         }
 
        
