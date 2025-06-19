@@ -1,4 +1,5 @@
 ﻿using System.Net.Mime;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using plantita.ProjectPlantita.plantmanagment.domain.model.aggregates;
@@ -17,11 +18,13 @@ public class MyPlantController : ControllerBase
 {
     private readonly IMyPlantCommandService _myPlantCommandService;
     private readonly IPlantQueryService _plantQueryService;
+    private readonly IMyPlantQueryService _myPlantQueryService;
 
-    public MyPlantController(IMyPlantCommandService myPlantCommandService, IPlantQueryService plantQueryService)
+    public MyPlantController(IMyPlantCommandService myPlantCommandService,IMyPlantQueryService myPlantQueryService, IPlantQueryService plantQueryService)
     {
         _myPlantCommandService = myPlantCommandService;
         _plantQueryService = plantQueryService;
+        _myPlantQueryService = myPlantQueryService;
     }
 
     // Explicación:
@@ -44,4 +47,18 @@ public class MyPlantController : ControllerBase
         var created = await _myPlantCommandService.RegisterMyPlantAsync(userId, plantId, resource);
         return CreatedAtAction(nameof(Create), new { id = created.MyPlantId }, MyPlantTransform.ToResource(created));
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+        if (userIdClaim == null) return Unauthorized();
+
+        var userId = Guid.Parse(userIdClaim.Value);
+        var myPlants = await _myPlantQueryService.GetAllByUserIdAsync(userId);
+    
+        var resources = myPlants.Select(MyPlantTransform.ToResource);
+        return Ok(resources);
+    }
+
 }
