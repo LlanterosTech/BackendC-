@@ -61,4 +61,15 @@ public class MyPlantController : ControllerBase
         return Ok(resources);
     }
 
+    [HttpGet("{myPlantId:guid}")]
+    public async Task<IActionResult> GetMyPlantById(Guid myPlantId)
+    {
+        var myPlant = await _myPlantQueryService.GetByIdAsync(myPlantId);
+        if (myPlant == null) return NotFound();
+        var myPlantTransform = MyPlantTransform.ToResource(myPlant);
+        
+        return Ok(myPlantTransform);
+    }
+
+
 }
