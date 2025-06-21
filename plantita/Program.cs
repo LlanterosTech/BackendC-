@@ -202,14 +202,12 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure Middleware Pipeline
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SupportedSubmitMethods(new[] { SubmitMethod.Get, SubmitMethod.Post });
-        c.ConfigObject.AdditionalItems["withCredentials"] = true;
-    });}
+    c.SupportedSubmitMethods(new[] { SubmitMethod.Get, SubmitMethod.Post });
+    c.ConfigObject.AdditionalItems["withCredentials"] = true;
+});
 
 app.UseHttpsRedirection();
 
