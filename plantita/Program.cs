@@ -28,6 +28,8 @@ using plantita.User.Interfaces.ACL.Services;
 using ProjectCalculadoraAMSAC.User.Infraestructure.Persistence.EFC.Repositories;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
+Console.WriteLine("🔥 Application starting...");
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(options =>
@@ -90,7 +92,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",policy =>
     {
-        policy.WithOrigins("http://localhost:8081")  
+        policy.WithOrigins("http://localhost:8080")  
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();  
