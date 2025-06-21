@@ -7,14 +7,20 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
 # Esta fase se usa para compilar el proyecto de servicio
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+# Copia el .csproj y elimina cualquier global.json antes de restaurar
 COPY ["plantita.csproj", "."]
+RUN rm -f /src/global.json
 RUN dotnet restore "./plantita.csproj"
+
+# Copia el resto del código y vuelve a eliminar por si acaso
 COPY . .
+RUN rm -f /src/global.json
+
 WORKDIR "/src/."
 RUN dotnet build "./plantita.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
