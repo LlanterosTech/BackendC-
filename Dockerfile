@@ -12,24 +12,24 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-# Copia el .csproj y elimina cualquier global.json antes de restaurar
-COPY ["plantita.csproj", "."]
+# Copia solo el archivo .csproj desde la subcarpeta plantita
+COPY plantita/plantita.csproj ./
 RUN rm -f /src/global.json
-RUN dotnet restore "./plantita.csproj"
+RUN dotnet restore "plantita.csproj"
 
-# Copia el resto del código y vuelve a eliminar por si acaso
-COPY . .
+# Copia el resto del contenido del proyecto desde la subcarpeta
+COPY plantita/. ./
 RUN rm -f /src/global.json
 
-WORKDIR "/src/."
-RUN dotnet build "./plantita.csproj" -c $BUILD_CONFIGURATION -o /app/build
+# Compila el proyecto
+RUN dotnet build "plantita.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
+# Publica el proyecto
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./plantita.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "plantita.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# Esta fase se usa en producción o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuración de depuración)
+# Fase final: producción
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
