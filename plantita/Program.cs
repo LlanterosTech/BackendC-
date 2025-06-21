@@ -32,6 +32,8 @@ Console.WriteLine("🔥 Application starting...");
 
 var builder = WebApplication.CreateBuilder(args);
 
+Console.WriteLine("✅ Builder creado");
+
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = "Bearer";
@@ -180,6 +182,7 @@ builder.Services.AddHttpClient<IPlantIdentificationService, PlantIdentificationS
 
 
 var app = builder.Build();
+Console.WriteLine("✅ App construida");
 
 // Log Server Addresses
 var serverAddresses = app.Services.GetRequiredService<IServer>().Features.Get<IServerAddressesFeature>();
@@ -215,4 +218,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+Console.WriteLine("✅ App corriendo");
 app.UseStaticFiles(); // Asegúrate de tener esto configurado
