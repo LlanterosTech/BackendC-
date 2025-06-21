@@ -33,5 +33,8 @@ RUN dotnet publish "plantita.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+RUN echo "Contenido de /app:" && find /app
+
 RUN rm -f /app/global.json
 ENTRYPOINT ["dotnet", "plantita.dll"]
