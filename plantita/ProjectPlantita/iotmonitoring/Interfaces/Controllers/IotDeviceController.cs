@@ -31,7 +31,7 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
             return devices.Select(ToResource);
         }
 
-        [HttpGet("me")]
+        [HttpGet("me/me")]
         public async Task<IActionResult> GetAllDevicesByUser()
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
