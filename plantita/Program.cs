@@ -224,7 +224,6 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHttpsRedirection();
-app.UseCookiePolicy();
 app.UseRouting();
 app.UseCors("AllowFrontend");
 app.UseAuthentication();
