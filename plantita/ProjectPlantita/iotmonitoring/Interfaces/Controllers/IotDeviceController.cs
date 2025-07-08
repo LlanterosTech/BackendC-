@@ -34,6 +34,7 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
         [HttpGet("me/me")]
         public async Task<IActionResult> GetAllDevicesByUser()
         {
+            Console.WriteLine("🔥 GetAllDevicesByUser ejecutado");
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userIdClaim == null) return Unauthorized();
 
