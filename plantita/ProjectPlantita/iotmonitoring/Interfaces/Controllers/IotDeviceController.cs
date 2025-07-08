@@ -43,7 +43,7 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
             return Ok(myDevices.Select(ToResource));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<IoTDeviceResource>> GetById(Guid id)
         {
             var device = await _iotDeviceService.GetByIdAsync(id);
