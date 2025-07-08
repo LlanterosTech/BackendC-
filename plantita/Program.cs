@@ -98,7 +98,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",policy =>
     {
-        policy.WithOrigins("http://localhost:8080")  
+        policy.WithOrigins("https://plantita-web.netlify.app")  
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();  
