@@ -77,7 +77,7 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result.DeviceId }, ToResource(result));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         public async Task<ActionResult<IoTDeviceResource>> Update(Guid id, [FromBody] SaveIoTDeviceResource resource)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -104,7 +104,7 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
             return ToResource(result);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             await _iotDeviceService.DeleteAsync(id);
