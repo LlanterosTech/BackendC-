@@ -11,5 +11,6 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Resources
         public DateTime ActivatedAt { get; set; }
         public string Status { get; set; }
         public string FirmwareVersion { get; set; }
+        
     }
 }
