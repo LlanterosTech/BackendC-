@@ -132,7 +132,6 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
         [HttpPost("/api/v1/environment/data-records")]
         public async Task<IActionResult> CreateEnvironmentRecord([FromBody] EnvironmentDataRecordDto dto)
         {
-            // Validar device
             var device = await _context.IoTDevices
                 .Include(d => d.Sensors)
                 .FirstOrDefaultAsync(d => d.DeviceName == dto.CustomDeviceId);
@@ -140,7 +139,6 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
             if (device == null)
                 return NotFound("Device not found");
 
-            // Crear lista de lecturas válidas
             var readings = new List<SensorReading>();
 
             if (dto.Light.HasValue)
