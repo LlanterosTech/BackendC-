@@ -11,12 +11,12 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
 {
     [ApiController]
     [Route("plantita/v1/[controller]")]
-    public class IoTDeviceController : ControllerBase
+    public class IotDeviceController : ControllerBase
     {
         private readonly IIoTDeviceService _iotDeviceService;
         private readonly AppDbContext _context;
 
-        public IoTDeviceController(IIoTDeviceService iotDeviceService, AppDbContext context)
+        public IotDeviceController(IIoTDeviceService iotDeviceService, AppDbContext context)
         {
             _iotDeviceService = iotDeviceService;
             _context = context;
