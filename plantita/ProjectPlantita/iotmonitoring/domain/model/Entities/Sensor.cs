@@ -1,4 +1,6 @@
-﻿namespace plantita.ProjectPlantita.iotmonitoring.domain.model.Entities;
+﻿using plantita.ProjectPlantita.iotmonitoring.domain.model.aggregates;
+
+namespace plantita.ProjectPlantita.iotmonitoring.domain.model.Entities;
 
 public class Sensor
 {
@@ -13,5 +15,7 @@ public class Sensor
     public bool IsActive { get; set; }
 
     public SensorConfig Configuration { get; set; }
+    public IoTDevice Device { get; set; }
+
     public List<SensorReading> Readings { get; set; }
 }

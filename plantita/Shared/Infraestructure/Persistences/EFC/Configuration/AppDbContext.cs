@@ -113,6 +113,23 @@ namespace plantita.Shared.Infraestructure.Persistences.EFC.Configuration
                       .HasForeignKey(a => a.PlantInstanceId);
             });
             
+            modelBuilder.Entity<IoTDevice>(entity =>
+            {
+                entity.HasKey(d => d.DeviceId);
+
+                // Relación con MyPlant
+                entity.HasOne(d => d.MyPlant)
+                    .WithMany(p => p.IoTDevices) 
+                    .HasForeignKey(d => d.MyPlantId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                // Relación con Sensors
+                entity.HasMany(d => d.Sensors)
+                    .WithOne(s => s.Device)
+                    .HasForeignKey(s => s.DeviceId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+            
             modelBuilder.Entity<Plant>(entity =>
             {
                 entity.HasKey(p => p.PlantId);

@@ -1,4 +1,5 @@
-﻿using plantita.ProjectPlantita.iotmonitoring.domain.model.Entities;
+﻿using plantita.ProjectPlantita.iotmonitoring.domain.model.aggregates;
+using plantita.ProjectPlantita.iotmonitoring.domain.model.Entities;
 using plantita.ProjectPlantita.plantmanagment.domain.model.Entities;
 using plantita.User.Domain.Model.Aggregates;
 
@@ -20,6 +21,8 @@ public class MyPlant
     public List<PlantHealthLog> HealthLogs { get; set; }
     public List<CareTask> CareTasks { get; set; }
     public List<Alert> Alerts { get; set; }  // Relación con Alert
+    public List<IoTDevice> IoTDevices { get; set; }
+
 
 }
 

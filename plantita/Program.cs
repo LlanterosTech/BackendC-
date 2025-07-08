@@ -1,3 +1,7 @@
+// IoT Monitoring dependencies
+using plantita.ProjectPlantita.iotmonitoring.Application.Internal.Services;
+using plantita.ProjectPlantita.iotmonitoring.domain.repositories;
+using plantita.ProjectPlantita.iotmonitoring.Infraestructure.Persistence;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting.Server;
@@ -94,7 +98,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",policy =>
     {
-        policy.WithOrigins("https://plantita-web.netlify.app")  
+        policy.WithOrigins("http://localhost:8080")  
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();  
@@ -180,6 +184,16 @@ builder.Services.AddScoped<IMyPlantQueryService, MyPlantQueryService>();
 
 builder.Services.AddHttpClient<IPlantIdentificationService, PlantIdentificationService>();
 
+// IoT Monitoring DI
+builder.Services.AddScoped<IIoTDeviceRepository, IoTDeviceRepository>();
+builder.Services.AddScoped<ISensorRepository, SensorRepository>();
+builder.Services.AddScoped<ISensorConfigRepository, SensorConfigRepository>();
+builder.Services.AddScoped<ISensorReadingRepository, SensorReadingRepository>();
+builder.Services.AddScoped<IIoTDeviceService, IoTDeviceService>();
+builder.Services.AddScoped<ISensorService, SensorService>();
+builder.Services.AddScoped<ISensorConfigService, SensorConfigService>();
+builder.Services.AddScoped<ISensorReadingService, SensorReadingService>();
+
 
 var app = builder.Build();
 Console.WriteLine("✅ App construida");
@@ -215,6 +229,6 @@ app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.UseStaticFiles(); // Asegúrate de tener esto configurado
 app.Run();
 Console.WriteLine("✅ App corriendo");
-app.UseStaticFiles(); // Asegúrate de tener esto configurado

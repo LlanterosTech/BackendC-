@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FOCUsY9So1PxTwDdX/leR54WgoBcOza88WwAKPhF+vk=",
+  "Hash": "+d7ShNVA26AOqLkSpxQhrs/hWriD8h9GabxIIofkKDk=",
   "Source": "plantita",
   "BasePath": "_content/plantita",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "plantita\\wwwroot",
       "Source": "plantita",
-      "ContentRoot": "E:\\plantita\\plantita\\wwwroot\\",
+      "ContentRoot": "C:\\BackendC-\\plantita\\wwwroot\\",
       "BasePath": "_content/plantita",
       "Pattern": "**"
     }
