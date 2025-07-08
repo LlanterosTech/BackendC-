@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
 {
     [ApiController]
-    [Route("plantita/v1/iot-device")]
+    [Route("plantita/v1/[controller]")]
     public class IoTDeviceController : ControllerBase
     {
         private readonly IIoTDeviceService _iotDeviceService;
