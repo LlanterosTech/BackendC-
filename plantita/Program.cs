@@ -98,7 +98,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",policy =>
     {
-        policy.WithOrigins("https://plantita-web.netlify.app/")  
+        policy.WithOrigins("https://plantita-web.netlify.app")  
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();  
@@ -222,13 +222,19 @@ app.UseSwaggerUI(c =>
     c.SupportedSubmitMethods(new[] { SubmitMethod.Get, SubmitMethod.Post });
     c.ConfigObject.AdditionalItems["withCredentials"] = true;
 });
-
 app.UseHttpsRedirection();
+
+app.UseStaticFiles(); // Sirve archivos estáticos antes del routing si quieres
+
 app.UseRouting();
+
 app.UseCors("AllowFrontend");
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
-app.UseStaticFiles(); // Asegúrate de tener esto configurado
+
 app.Run();
+
 Console.WriteLine("✅ App corriendo");
