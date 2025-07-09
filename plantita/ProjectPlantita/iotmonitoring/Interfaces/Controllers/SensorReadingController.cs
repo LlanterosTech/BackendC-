@@ -36,6 +36,18 @@ namespace plantita.ProjectPlantita.iotmonitoring.Interfaces.Controllers
             if (reading == null) return NotFound();
             return new SensorReadingResource { ReadingId = reading.ReadingId, SensorId = reading.SensorId, Value = reading.Value, Timestamp = reading.Timestamp };
         }
+        
+        [HttpGet("{id}/sensorID")]
+        public async Task<IEnumerable<SensorReadingResource>> GetBySensorId(Guid id)
+        {
+            var readings = await _sensorReadingService.GetBySensorIdAsync(id);
+            var resources = new List<SensorReadingResource>();
+            foreach (var r in readings)
+            {
+                resources.Add(new SensorReadingResource { ReadingId = r.ReadingId, SensorId = r.SensorId, Value = r.Value, Timestamp = r.Timestamp });
+            }
+            return resources;
+        }
 
         [HttpPost]
         public async Task<ActionResult<SensorReadingResource>> Create([FromBody] SaveSensorReadingResource resource)

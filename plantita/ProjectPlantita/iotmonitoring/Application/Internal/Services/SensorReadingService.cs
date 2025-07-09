@@ -25,6 +25,12 @@ namespace plantita.ProjectPlantita.iotmonitoring.Application.Internal.Services
         {
             return await _repository.FindByIdAsync(id);
         }
+        
+        public async Task<IEnumerable<SensorReading>> GetBySensorIdAsync(Guid id)
+        {
+            return await _repository.GetBySensorIdAsync(id);
+        }
+
 
         public async Task<SensorReading> CreateAsync(SensorReading reading)
         {

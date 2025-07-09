@@ -24,6 +24,16 @@ namespace plantita.ProjectPlantita.iotmonitoring.Infraestructure.Persistence
         {
             return await _context.SensorReadings.FindAsync(id);
         }
+        public async Task<IEnumerable<SensorReading>> GetBySensorIdAsync(Guid sensorId)
+        {
+            return await _context.SensorReadings
+                .Where(s => s.SensorId == sensorId)
+                .ToListAsync();
+        }
+        public async Task<SensorReading> FindBySensorIdAsync(Guid id)
+        {
+            return await _context.SensorReadings.FindAsync(id);
+        }
 
         public async Task AddAsync(SensorReading reading)
         {

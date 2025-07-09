@@ -8,6 +8,8 @@ namespace plantita.ProjectPlantita.iotmonitoring.domain.repositories
     {
         Task<IEnumerable<SensorReading>> ListAsync();
         Task<SensorReading> FindByIdAsync(Guid id);
+        Task<IEnumerable<SensorReading>> GetBySensorIdAsync(Guid id);
+
         Task AddAsync(SensorReading reading);
         void Update(SensorReading reading);
         void Remove(SensorReading reading);
